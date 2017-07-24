@@ -1,0 +1,27 @@
+{% extends 'layout.html' %} {% block title %}ACME - Category Products{% endblock %} {% block header %}ACME Category{% endblock
+%} {% block content %}
+<h2>Products for {{ currentCategory }}</h2>
+<div class='well'>
+    <form action='/categories/{{ currentCategory }}/products/' method='POST'>
+        <div class='form-group'>
+            <input class='form-control' name='name' placeholder='name' />
+        </div>
+        <div class='form-group'>
+            <button class='btn btn-primary'>Save</button>
+        </div>
+    </form>
+</div>
+<ul class="list-group">
+    {% for product in products %}
+    <li class="list-group-item">
+        {{ product.name }}, SKU:{{ product.id }}
+        <form action='/categories/{{ currentCategory }}/products/{{ product.id }}?_method=DELETE' method='POST'>
+            <button class='btn btn-warning'>Delete Product</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+<form action='/categories/{{ currentCategory }}?_method=DELETE' method='POST'>
+    <button class='btn btn-danger'>Delete Category</button>
+</form>
+{% endblock %}

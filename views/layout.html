@@ -1,0 +1,28 @@
+<html>
+
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel='stylesheet' href='/vendor/bootstrap/dist/css/bootstrap.min.css' />
+</head>
+
+<body>
+    <div class='container'>
+        <h1>{% block header %}{% endblock %}</h1>
+        <ul class="nav nav-tabs">
+            <li class="nav-item{% if not currentCategory %} active{% endif %}">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+
+            {% for category in categories %}
+            <li class="nav-item{% if currentCategory === category %} active{% endif %}">
+                <a class="nav-link" href="/categories/{{ category }}/products">{{ category }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% block content %}{% endblock %}
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>
