@@ -9,7 +9,7 @@ var _categories = {
     ]
 }
 
-var _currIndex = Object.keys(_categories).length;
+var _currIndex = Object.keys(_categories).length + 1;
 
 module.exports = {
     getCategoryNames: function () {
@@ -23,7 +23,6 @@ module.exports = {
             throw 'product must have a name';
         }
         product.id = ++_currIndex;
-        console.log(product);
         _categories[category].push(product);
     },
     deleteProduct: function (category, id) {
@@ -38,6 +37,6 @@ module.exports = {
         if (!category.name) {
             throw 'category must have a name';
         }
-        _categories[category.name] = {};
+        _categories[category.name] = [];
     }
 };
